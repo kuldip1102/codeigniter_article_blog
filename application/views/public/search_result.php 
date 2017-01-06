@@ -21,8 +21,8 @@
 	 <?php	} ?>
 	<?php else: ?>
 	<tr>
-		<td colspan="3">
-			No Records Founds.
+		<td colspan="3"
+	>		No Records Founds.
 		</td>
 	<?php endif; ?>
 	</tr>

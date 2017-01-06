@@ -2,21 +2,25 @@
 
 class Login extends MY_Controller{
 
+
 	public function index(){
+		if ($this->session->userdata('user_id'))
+			return redirect('admin/dashboard');
 		$this->load->helper('form');
 		$this->load->view('public/admin_login');
 	}
 	public function admin_login(){
-
+		if ($this->session->userdata('user_id'))
+			return redirect('admin/dashboard');
 		// form_validation library to validate input fields admin_login view 
 		$this->load->library('form_validation');
-		$this->form_validation->set_rules('username','User name','required|alpha');
-		$this->form_validation->set_rules('password','Password','required');
+		// $this->form_validation->set_rules('username','User name','required|alpha');
+		// $this->form_validation->set_rules('password','Password','required');
 
 
 		//error is shown in div tag and color for all error.
 		$this->form_validation->set_error_delimiters('<div class="text-danger">', '</div>');
-		if ($this->form_validation->run()) {
+		if ($this->form_validation->run('admin_login')) {
 
 			// get the post data form to controller
 			$username = $this->input->post('username');
@@ -29,7 +33,7 @@ class Login extends MY_Controller{
 
 			if ($login_id) {
 				$k =$this->session->set_userdata('user_id',$login_id);
-				// it returns to the redirect the Admin controller in dashboard method 
+				// it returns to the redirect the Admin controller in dashboard method.
 				return redirect('admin/dashboard');
 			}
 			else{

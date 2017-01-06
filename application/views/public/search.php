@@ -28,6 +28,5 @@
 	</tr>
 	</tbody>
 </table>
-<?= $this->pagination->create_links(); ?>
 </div>
 <?php include_once('public_footer.php'); ?>
